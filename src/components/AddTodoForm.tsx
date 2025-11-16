@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import type { Todo } from "../types";
 
 interface AddTodoFormProps {
-  onAddTodo: (text: string) => void;
+  onAddTodo: (text: Todo['text']) => void;
 }
 
 const AddTodoForm: React.FC<AddTodoFormProps> = ({ onAddTodo }) => {

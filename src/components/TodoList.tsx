@@ -3,7 +3,7 @@ import type { Todo } from "../types";
 
 interface TodoListProps {
   todos: Todo[];
-  onToggleTodo: (todoId: number) => void;
+  onToggleTodo: (todoId: Todo["id"]) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
@@ -18,7 +18,11 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onToggleTodo }) => {
             cursor: "pointer",
           }}
         >
-          <input type="checkbox" checked={todo.completed}></input>
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={() => onToggleTodo(todo.id)}
+          ></input>
           {todo.text}
         </li>
       ))}

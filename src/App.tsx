@@ -14,7 +14,7 @@ const initialTodos: Todo[] = [
 function App() {
   const [todos, setTodos] = useState(initialTodos);
 
-  const handleAddTodo = (text: string) => {
+  const handleAddTodo = (text: Todo['text']) => {
     const newTodo: Todo = {
       id: Date.now(),
       text: text,
@@ -26,7 +26,7 @@ function App() {
     });
   };
 
-  const handleToggleTodo = (todoId: number) => {
+  const handleToggleTodo = (todoId: Todo['id']) => {
     const newArrTodo = todos.map((todo) =>
       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
     );
