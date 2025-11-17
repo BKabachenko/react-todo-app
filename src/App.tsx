@@ -14,7 +14,7 @@ const initialTodos: Todo[] = [
 function App() {
   const [todos, setTodos] = useState(initialTodos);
 
-  const handleAddTodo = (text: Todo['text']) => {
+  const handleAddTodo = (text: Todo["text"]) => {
     const newTodo: Todo = {
       id: Date.now(),
       text: text,
@@ -26,12 +26,16 @@ function App() {
     });
   };
 
-  const handleToggleTodo = (todoId: Todo['id']) => {
-    const newArrTodo = todos.map((todo) =>
-      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+  const handleToggleTodo = (todoId: Todo["id"]) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      )
     );
+  };
 
-    setTodos(newArrTodo);
+  const handleDeleteTodo = (todoId: Todo["id"]) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != todoId));
   };
 
   return (
@@ -40,7 +44,11 @@ function App() {
 
       <AddTodoForm onAddTodo={handleAddTodo} />
 
-      <TodoList todos={todos} onToggleTodo={handleToggleTodo} />
+      <TodoList
+        todos={todos}
+        onToggleTodo={handleToggleTodo}
+        onDeleteTodo={handleDeleteTodo}
+      />
     </>
   );
 }
