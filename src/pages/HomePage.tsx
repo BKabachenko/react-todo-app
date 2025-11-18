@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
+import Header from "../layout/Header/Header";
 import TodoList from "../components/TodoList";
 import AddTodoForm from "../components/AddTodoForm";
 import type { Todo } from "../types";
@@ -72,10 +72,7 @@ const HomePage = () => {
   }
   return (
     <>
-      <Header title="Мій перший ToDo-список" />
-
       <AddTodoForm onAddTodo={handleAddTodo} />
-
       <TodoList
         todos={todos}
         onToggleTodo={handleToggleTodo}

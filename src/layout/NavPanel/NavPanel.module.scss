@@ -1,0 +1,14 @@
+.nav {
+  // min-width: 100wh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.link {
+
+  &.active{
+    text-decoration: underline;
+  }
+}
