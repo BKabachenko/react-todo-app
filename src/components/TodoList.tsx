@@ -10,7 +10,7 @@ const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) => {
   return (
     <ul>
       {todos.map((todo) => (
-        <TodoItem todo={todo} onToggleTodo={onToggleTodo} onDeleteTodo={onDeleteTodo} />
+        <TodoItem key={todo.id} todo={todo} onToggleTodo={onToggleTodo} onDeleteTodo={onDeleteTodo} />
       ))}
     </ul>
   );

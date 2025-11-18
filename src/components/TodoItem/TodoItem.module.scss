@@ -1,3 +1,14 @@
 .li{
-  
+  min-width: 345px;
+  min-height: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    width: 100%;
+  }
+}
+
+.btn {
+
 }
