@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../layout/Header/Header";
-import TodoList from "../components/TodoList";
-import AddTodoForm from "../components/AddTodoForm";
+import TodoList from "../components/TodoList/TodoList";
+import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
 import type { Todo } from "../types";
 
 const offlineInitialTodos: Todo[] = [
