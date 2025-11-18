@@ -10,21 +10,21 @@ interface TodoItemProps {
 
 const TodoItem = ({ todo, onToggleTodo, onDeleteTodo }: TodoItemProps) => {
   return (
-    <li
-      className={styles.li}
-      style={{
-        textDecoration: todo.completed ? "line-through" : "none",
-        cursor: "pointer",
-      }}
-    >
+    <li className={styles.li}>
       <input
         type="checkbox"
         checked={todo.completed}
         onChange={() => onToggleTodo(todo.id)}
       ></input>
-      <p>{todo.text}</p>
+      <p
+        style={{
+          textDecoration: todo.completed ? "line-through" : "none",
+        }}
+        onClick={() => onToggleTodo(todo.id)}
+      >
+        {todo.text}
+      </p>
       <button className={styles.btn} onClick={() => onDeleteTodo(todo.id)}>
-        {" "}
         Delete
       </button>
     </li>
