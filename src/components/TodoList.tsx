@@ -1,4 +1,3 @@
-import React from "react";
 import type { Todo } from "../types";
 interface TodoListProps {
   todos: Todo[];
@@ -6,11 +5,7 @@ interface TodoListProps {
   onDeleteTodo: (todoId: Todo["id"]) => void;
 }
 
-const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  onToggleTodo,
-  onDeleteTodo,
-}) => {
+const TodoList = ({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) => {
   return (
     <ul>
       {todos.map((todo) => (
@@ -26,8 +21,7 @@ const TodoList: React.FC<TodoListProps> = ({
             checked={todo.completed}
             onChange={() => onToggleTodo(todo.id)}
           ></input>
-          {todo.text} -
-          <button onClick={() => onDeleteTodo(todo.id)}> Delete</button>
+          {todo.text} -<button onClick={() => onDeleteTodo(todo.id)}> Delete</button>
         </li>
       ))}
     </ul>

@@ -10,7 +10,7 @@ const offlineInitialTodos: Todo[] = [
   { id: 3, text: "Вивчити useState", completed: true },
 ];
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>(offlineInitialTodos);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
