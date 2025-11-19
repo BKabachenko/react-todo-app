@@ -1,4 +1,4 @@
-.li{
+.li {
   min-width: 345px;
   min-height: 35px;
   display: flex;
@@ -11,5 +11,8 @@
 }
 
 .btn {
+}
 
+.completed {
+  text-decoration: line-through;
 }

@@ -8,6 +8,10 @@ interface TodoItemProps {
   onDeleteTodo: (todoId: Todo["id"]) => void;
 }
 
+const textStyle = (completed: boolean) => {
+  return completed ? styles.completed : ""
+};
+
 const TodoItem = ({ todo, onToggleTodo, onDeleteTodo }: TodoItemProps) => {
   return (
     <li className={styles.li}>
@@ -17,9 +21,7 @@ const TodoItem = ({ todo, onToggleTodo, onDeleteTodo }: TodoItemProps) => {
         onChange={() => onToggleTodo(todo.id)}
       ></input>
       <p
-        style={{
-          textDecoration: todo.completed ? "line-through" : "none",
-        }}
+        className={textStyle(todo.completed)}
         onClick={() => onToggleTodo(todo.id)}
       >
         {todo.text}
