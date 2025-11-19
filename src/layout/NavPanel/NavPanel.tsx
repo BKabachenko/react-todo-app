@@ -1,13 +1,21 @@
-import { NavLink } from 'react-router'
-import styles from "./NavPanel.module.scss"
+import { NavLink } from "react-router";
+import styles from "./NavPanel.module.scss";
+
+const linkStyle = ({ isActive }: { isActive: boolean }) => {
+  return isActive ? `${styles.link} ${styles.active}` : styles.link;
+};
 
 const NavPanel = () => {
   return (
     <div className={styles.nav}>
-      <NavLink className={styles.link} to="/">Home</NavLink>
-      <NavLink className={styles.link} to="/about">About Us</NavLink>
+      <NavLink className={linkStyle} to="/">
+        Home
+      </NavLink>
+      <NavLink className={linkStyle} to="/about">
+        About Us
+      </NavLink>
     </div>
-  )
-}
+  );
+};
 
-export default NavPanel
+export default NavPanel;

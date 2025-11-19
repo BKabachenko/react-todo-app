@@ -8,7 +8,10 @@
 
 .link {
 
-  &.active{
+
+}
+
+  .active{
+    color: orange;
     text-decoration: underline;
   }
-}
