@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "../layout/Header/Header";
 import TodoList from "../components/TodoList/TodoList";
 import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
 import type { Todo } from "../types";
 
-const offlineInitialTodos: Todo[] = [
-  { id: 1, text: "Вивчити React", completed: false },
-  { id: 2, text: "Вивчити Props", completed: true },
-  { id: 3, text: "Вивчити useState", completed: true },
-];
-
 const HomePage = () => {
-  const [todos, setTodos] = useState<Todo[]>(offlineInitialTodos);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -64,11 +57,12 @@ const HomePage = () => {
   const handleDeleteTodo = (todoId: Todo["id"]) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != todoId));
   };
+
   if (isLoading) {
-    return <Header title="App is loading... please wait." />;
+    return <h2>"Todo list is loading... please wait.</h2>;
   }
   if (isError) {
-    return <Header title="Something went wrong. :(" />;
+    return <h2> Something went wrong...</h2>;
   }
   return (
     <>
@@ -80,6 +74,6 @@ const HomePage = () => {
       />
     </>
   );
-}
+};
 
 export default HomePage;
