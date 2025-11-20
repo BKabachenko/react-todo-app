@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TodoList from "../components/TodoList/TodoList";
 import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
-import type { Todo } from "../types";
+import type { Todo, FilterType } from "../types";
 import { setJson, getJson } from "../utils/LocalStorage";
 
 const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+  const [filter, setFilter] = useState<FilterType>("all");
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -19,10 +20,10 @@ const HomePage = () => {
         } catch (e) {
           console.error("LS parse error", e);
         } finally {
-        setIsLoading(false);
+          setIsLoading(false);
+        }
       }
-      }
-      
+
       try {
         const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=10");
         if (!response.ok) {
@@ -52,9 +53,9 @@ const HomePage = () => {
     if (isLoading || isError) {
       return;
     }
-    
+
     setJson("todos", todos);
-  }, [todos,isLoading, isError]);
+  }, [todos, isLoading, isError]);
 
   const handleAddTodo = (text: Todo["text"]) => {
     const newTodo: Todo = {
@@ -80,6 +81,14 @@ const HomePage = () => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != todoId));
   };
 
+  const filteredTodo = useMemo(() => {
+    return todos.filter((todo) => {
+      if (filter === "active") return !todo.completed;
+      if (filter === "completed") return todo.completed;
+      return true;
+    });
+  }, [todos, filter]);
+
   if (isLoading) {
     return <h2>"Todo list is loading... please wait.</h2>;
   }
@@ -89,8 +98,19 @@ const HomePage = () => {
   return (
     <>
       <AddTodoForm onAddTodo={handleAddTodo} />
+      <div className="filter-block">
+        <button onClick={() => setFilter("all")} disabled={filter === "all"}>
+          All
+        </button>
+        <button onClick={() => setFilter("active")} disabled={filter === "active"}>
+          Active
+        </button>
+        <button onClick={() => setFilter("completed")} disabled={filter === "completed"}>
+          Completed
+        </button>
+      </div>
       <TodoList
-        todos={todos}
+        todos={filteredTodo}
         onToggleTodo={handleToggleTodo}
         onDeleteTodo={handleDeleteTodo}
       />
