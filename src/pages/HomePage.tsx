@@ -3,13 +3,35 @@ import TodoList from "../components/TodoList/TodoList";
 import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
 import type { Todo } from "../types";
 
+const setJson = (key: string, value: object) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+const getJson = (key: string) => {
+  const item = localStorage.getItem(key);
+  if (item === null) return undefined;
+  return JSON.parse(item);
+};
+
 const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchTodos = async () => {
+    const loadTodos = async () => {
+      const todoJson = getJson("todos");
+      if (todoJson) {
+        try {
+          setTodos(todoJson);
+          return;
+        } catch (e) {
+          console.error("LS parse error", e);
+        } finally {
+        setIsLoading(false);
+      }
+      }
+      
       try {
         const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=10");
         if (!response.ok) {
@@ -31,8 +53,15 @@ const HomePage = () => {
         setIsLoading(false);
       }
     };
-    fetchTodos();
+
+    loadTodos();
   }, []);
+
+  useEffect(() => {
+    if (!isLoading && !isError) {
+      setJson("todos", todos);
+    }
+  }, [todos,isLoading, isError]);
 
   const handleAddTodo = (text: Todo["text"]) => {
     const newTodo: Todo = {
