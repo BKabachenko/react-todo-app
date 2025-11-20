@@ -2,16 +2,7 @@ import { useEffect, useState } from "react";
 import TodoList from "../components/TodoList/TodoList";
 import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
 import type { Todo } from "../types";
-
-const setJson = (key: string, value: object) => {
-  localStorage.setItem(key, JSON.stringify(value));
-};
-
-const getJson = (key: string) => {
-  const item = localStorage.getItem(key);
-  if (item === null) return undefined;
-  return JSON.parse(item);
-};
+import { setJson, getJson } from "../utils/LocalStorage";
 
 const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -20,7 +11,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const loadTodos = async () => {
-      const todoJson = getJson("todos");
+      const todoJson = getJson<Todo[]>("todos");
       if (todoJson) {
         try {
           setTodos(todoJson);
