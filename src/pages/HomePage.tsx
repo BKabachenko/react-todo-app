@@ -49,9 +49,11 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading && !isError) {
-      setJson("todos", todos);
+    if (isLoading || isError) {
+      return;
     }
+    
+    setJson("todos", todos);
   }, [todos,isLoading, isError]);
 
   const handleAddTodo = (text: Todo["text"]) => {
