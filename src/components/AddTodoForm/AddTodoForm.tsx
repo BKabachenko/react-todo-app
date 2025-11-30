@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import type { Todo } from "../../types";
-import s from "./AddTodoForm.module.scss"
-interface AddTodoFormProps {  
-  onAddTodo: (text: Todo['text']) => void;
+import s from "./AddTodoForm.module.scss";
+interface AddTodoFormProps {
+  onAddTodo: (text: Todo["text"]) => void;
 }
 
 const AddTodoForm = ({ onAddTodo }: AddTodoFormProps) => {
@@ -14,18 +14,12 @@ const AddTodoForm = ({ onAddTodo }: AddTodoFormProps) => {
       return;
     }
     onAddTodo(text);
-    setText('');
+    setText("");
   };
 
   return (
-    <form onSubmit={handleSubmit}
-    className={s.form}>
-      <input
-        type="text"
-        value={text}
-        
-        onChange={(e) => setText(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} className={s.form}>
+      <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
       <button type="submit">Add</button>
     </form>
   );

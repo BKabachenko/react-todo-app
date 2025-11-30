@@ -1,18 +1,73 @@
 .li {
   min-width: 345px;
-  min-height: 35px;
+  min-height: 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: rgba(30, 41, 59, 0.3);
+  border: 1px solid transparent;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: rgba(51, 65, 85, 0.4);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    & .button{
+      display: block;
+    }
+  }
   p {
     width: 100%;
+    font-size: 18px;
+    color: #e2e8f0;
+    padding-left: 18px;
+    cursor: pointer;
+
+    &.completed {
+      color: #64748b;
+      text-decoration: line-through;
+    }
   }
 }
-
-.btn {
+.checkboxContainer {
+  input {
+    display: none;
+  }
+  .checkbox {
+    &:checked+.checkmark{
+      background-color: #2563EB;
+      border: 2px solid #2563EB;
+      background-image: url("../../assets/check.svg");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: scale(1.1);
+    }
+  }
+  .checkmark {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #64748B;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 }
 
-.completed {
-  text-decoration: line-through;
+.button {
+  width: 32px;
+  height: 32px;
+  background-image: url("../../assets/trash.svg") ;
+        background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+  // display: none;
+  cursor: pointer;
 }

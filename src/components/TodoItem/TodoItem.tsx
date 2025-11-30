@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TodoItem.module.scss";
+import s from "./TodoItem.module.scss";
 import type { Todo } from "../../types";
 
 interface TodoItemProps {
@@ -9,24 +9,28 @@ interface TodoItemProps {
 }
 
 const textStyle = (completed: boolean) => {
-  return completed ? styles.completed : ""
+  return completed ? s.completed : ""
 };
 
 const TodoItem = ({ todo, onToggleTodo, onDeleteTodo }: TodoItemProps) => {
   return (
-    <li className={styles.li}>
+    <li className={s.li}>
+      <label className={s.checkboxContainer}>
       <input
         type="checkbox"
+        className={s.checkbox}
         checked={todo.completed}
         onChange={() => onToggleTodo(todo.id)}
       ></input>
+      <span className={s.checkmark}></span>
+      </label>
       <p
         className={textStyle(todo.completed)}
         onClick={() => onToggleTodo(todo.id)}
       >
         {todo.text}
       </p>
-      <button className={styles.btn} onClick={() => onDeleteTodo(todo.id)}>
+      <button className={s.button} onClick={() => onDeleteTodo(todo.id)}>
         Delete
       </button>
     </li>
