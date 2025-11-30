@@ -1,0 +1,23 @@
+.blueSpot {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 150px;
+  left: 250px;
+  filter: blur(100px);
+  background-color: #2564eb79;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.purpleSpot {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  bottom: 250px;
+  right: 250px;
+  filter: blur(100px);
+  background-color: #9233ea54;
+  border-radius: 50%;
+  z-index: 1;
+}
