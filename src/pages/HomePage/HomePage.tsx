@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import TodoList from "../components/TodoList/TodoList";
-import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
-import type { Todo, FilterType } from "../types";
-import { setJson, getJson } from "../utils/LocalStorage";
+import TodoList from "../../components/TodoList/TodoList";
+import AddTodoForm from "../../components/AddTodoForm/AddTodoForm";
+import type { Todo, FilterType } from "../../types";
+import { setJson, getJson } from "../../utils/LocalStorage";
+import s from "./HomePage.module.scss";
 
 const HomePage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -96,25 +97,36 @@ const HomePage = () => {
     return <h2> Something went wrong...</h2>;
   }
   return (
-    <>
-      <AddTodoForm onAddTodo={handleAddTodo} />
-      <div className="filter-block">
-        <button onClick={() => setFilter("all")} disabled={filter === "all"}>
-          All
-        </button>
-        <button onClick={() => setFilter("active")} disabled={filter === "active"}>
-          Active
-        </button>
-        <button onClick={() => setFilter("completed")} disabled={filter === "completed"}>
-          Completed
-        </button>
+    <main className={s.main}>
+      <div className={s.main__wrapper}>
+        <div className={s.main__headblock}>
+          <div className={s.headblock__input}>
+          <AddTodoForm onAddTodo={handleAddTodo} />
+          </div>
+          <div className={s.headblock__filterblock}>
+            <button onClick={() => setFilter("all")} disabled={filter === "all"} className={filter === "all" ? "active" : ""}>
+              All
+            </button>
+            <button onClick={() => setFilter("active")} disabled={filter === "active"}>
+              Active
+            </button>
+            <button onClick={() => setFilter("completed")} disabled={filter === "completed"}>
+              Completed
+            </button>
+          </div>
+        </div>
+        <div className={s.main__todolist}>
+          <TodoList
+            todos={filteredTodo}
+            onToggleTodo={handleToggleTodo}
+            onDeleteTodo={handleDeleteTodo}
+          />
+        </div>
+        <div className={s.main__footblock}>
+          <p>{filteredTodo.length} items in list</p>
+        </div>
       </div>
-      <TodoList
-        todos={filteredTodo}
-        onToggleTodo={handleToggleTodo}
-        onDeleteTodo={handleDeleteTodo}
-      />
-    </>
+    </main>
   );
 };
 
