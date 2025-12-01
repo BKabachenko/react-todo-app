@@ -2,4 +2,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
+  h1 {
+    font-size: 48px;
+    color: transparent;
+    background-image: linear-gradient(to right, #60A5FA, #C084FC);
+    background-clip: text;
+  }
 }
