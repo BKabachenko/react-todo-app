@@ -1,9 +1,10 @@
 .nav {
-  // min-width: 100wh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  border: 1px solid rgb(196, 196, 196);
+  background-color: grey;
+  border-radius: 24px;
 }
 
 .link {
