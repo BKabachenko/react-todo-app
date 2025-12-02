@@ -97,7 +97,6 @@ const HomePage = () => {
     return <h2> Something went wrong...</h2>;
   }
   return (
-    <main className={s.main}>
       <div className={s.main__wrapper}>
         <div className={s.main__headblock}>
           <div className={s.headblock__input}>
@@ -126,7 +125,6 @@ const HomePage = () => {
           <p>{filteredTodo.length} items in list</p>
         </div>
       </div>
-    </main>
   );
 };
 
