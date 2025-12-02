@@ -1,4 +1,3 @@
-import React from "react";
 import s from "./TodoItem.module.scss";
 import type { Todo } from "../../types";
 import TrashIcon from "../Icons/TrashIcon";
