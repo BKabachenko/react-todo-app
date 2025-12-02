@@ -66,7 +66,7 @@ const HomePage = () => {
     };
 
     setTodos((prevTodos) => {
-      return [...prevTodos, newTodo];
+      return [newTodo, ...prevTodos];
     });
   };
 
