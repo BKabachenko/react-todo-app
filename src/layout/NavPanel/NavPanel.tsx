@@ -7,14 +7,14 @@ const linkStyle = ({ isActive }: { isActive: boolean }) => {
 
 const NavPanel = () => {
   return (
-    <div className={styles.nav}>
+    <nav className={styles.nav}>
       <NavLink className={linkStyle} to="/">
         Home
       </NavLink>
       <NavLink className={linkStyle} to="/about">
         About Us
       </NavLink>
-    </div>
+    </nav>
   );
 };
 
