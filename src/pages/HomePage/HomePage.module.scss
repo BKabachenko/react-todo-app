@@ -30,6 +30,8 @@
   }
   &__filterblock {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     flex-direction: row;
     column-gap: 15px;
     button {
